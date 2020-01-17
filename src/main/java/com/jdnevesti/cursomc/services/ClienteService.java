@@ -15,13 +15,11 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo;
 	
-	public Cliente buscar(Integer id) {
-		Optional<Cliente> obj = repo.findById(id);
-		
+	public Cliente find(Integer id) {
+		Optional<Cliente> obj = repo.findById(id);		
 		if (obj.orElse(null) == null) {
 			throw new ObjectNotFoundException ("Objeto não encontrado! Id " + id + ", Tipo: " + Cliente.class.getName());
-		}
-		
+		}		
 		return obj.orElse(null);
 	}
 }

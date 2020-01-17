@@ -15,18 +15,24 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id) {
-		Optional<Categoria> obj = repo.findById(id);
-		
+	// Serviço para busca de dados
+	public Categoria find(Integer id) {
+		Optional<Categoria> obj = repo.findById(id);		
 		if (obj.orElse(null) == null) {
 			throw new ObjectNotFoundException ("Objeto não encontrado! Id " + id + ", Tipo: " + Categoria.class.getName());
-		}
-		
+		}		
 		return obj.orElse(null);
 	}
 	
+	// Serviço para inserir de dados
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	// Serviço para atualizar de dados
+	public Categoria update(Categoria obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 }
