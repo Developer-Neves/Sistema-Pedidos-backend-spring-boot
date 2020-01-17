@@ -1,5 +1,6 @@
 package com.jdnevesti.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,18 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	// Serviço para buscar dados
+	// Serviço para buscar dados por ID
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);		
 		if (obj.orElse(null) == null) {
 			throw new ObjectNotFoundException ("Objeto não encontrado! Id " + id + ", Tipo: " + Categoria.class.getName());
 		}		
 		return obj.orElse(null);
+	}
+	
+	// Serviço para buscar TODOS os dados
+	public List<Categoria> findAll() {
+		return repo.findAll();
 	}
 	
 	// Serviço para inserir dados
