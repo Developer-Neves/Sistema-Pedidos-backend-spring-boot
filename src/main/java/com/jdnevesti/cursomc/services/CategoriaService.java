@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.jdnevesti.cursomc.domain.Categoria;
 import com.jdnevesti.cursomc.dto.CategoriaDTO;
 import com.jdnevesti.cursomc.repositories.CategoriaRepository;
-import com.jdnevesti.cursomc.services.exceptions.ObjectNotFoundException;
 import com.jdnevesti.cursomc.services.exceptions.DataIntegrityException;
+import com.jdnevesti.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -44,8 +44,9 @@ public class CategoriaService {
 	
 	// Serviço para atualizar dados
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	// Serviço para excluir dados
@@ -66,5 +67,9 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
