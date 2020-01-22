@@ -33,7 +33,7 @@ import com.jdnevesti.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner{
-	
+
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
@@ -95,7 +95,7 @@ public class CursomcApplication implements CommandLineRunner{
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 		
-		Cliente cliente1 = new Cliente(null, "Maria Silva", "maria@gmail.com","36378912377", TipoCliente.PESSOAFISICA);
+		Cliente cliente1 = new Cliente(null, "Maria Silva", "maria.n@gmail.com","36378912377", TipoCliente.PESSOAFISICA);
 		cliente1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 		
 		Endereco endereco1 = new Endereco(null,"Rua Flores","300", "Apto 303", "Jardim", "39220834",cliente1,cidade1);
@@ -136,5 +136,4 @@ public class CursomcApplication implements CommandLineRunner{
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 		
 	}
-
 }
