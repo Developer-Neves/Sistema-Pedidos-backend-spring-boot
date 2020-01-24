@@ -103,20 +103,20 @@ public class CursomcApplication implements CommandLineRunner{
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11));
 		
-		Estado estado1 = new Estado(null, "Minas Gerais");
-		Estado estado2 = new Estado(null, "São Paulo");
+		Estado estado3 = new Estado(null, "Rio Grande do Norte");
+		Estado estado4 = new Estado(null, "Piauí");
 		
-		Cidade cidade1 = new Cidade(null, "Uberlândia", estado1);
-		Cidade cidade2 = new Cidade(null, "São Paulo", estado2);
-		Cidade cidade3 = new Cidade(null, "Campinas", estado2);
+		Cidade cidade1 = new Cidade(null, "Uberlândia", estado3);
+		Cidade cidade2 = new Cidade(null, "São Paulo", estado4);
+		Cidade cidade3 = new Cidade(null, "Campinas", estado4);
 		
-		estado1.getCidades().addAll(Arrays.asList(cidade1));
-		estado1.getCidades().addAll(Arrays.asList(cidade2,cidade3));
+		estado3.getCidades().addAll(Arrays.asList(cidade1));
+		estado3.getCidades().addAll(Arrays.asList(cidade2,cidade3));
 		
-		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
+		estadoRepository.saveAll(Arrays.asList(estado3, estado4));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 		
-		Cliente cliente1 = new Cliente(null, "Maria Silva", "marria.m@gmail.com","36378912377", TipoCliente.PESSOAFISICA);
+		Cliente cliente1 = new Cliente(null, "Maria Silva", "maria.ns@tes.com","36378912377", TipoCliente.PESSOAFISICA);
 		cliente1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 		
 		Endereco endereco1 = new Endereco(null,"Rua Flores","300", "Apto 303", "Jardim", "39220834",cliente1,cidade1);

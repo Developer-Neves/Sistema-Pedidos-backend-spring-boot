@@ -22,7 +22,7 @@ public class ProdutoService {
 	private ProdutoRepository repo;
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+		
 	public Produto find(Integer id) {
 		Optional<Produto> obj = repo.findById(id);		
 		if (obj.orElse(null) == null) {
