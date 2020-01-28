@@ -20,6 +20,7 @@ import com.jdnevesti.cursomc.domain.PagamentoComCartao;
 import com.jdnevesti.cursomc.domain.Pedido;
 import com.jdnevesti.cursomc.domain.Produto;
 import com.jdnevesti.cursomc.domain.Enums.EstadoPagamento;
+import com.jdnevesti.cursomc.domain.Enums.Perfil;
 import com.jdnevesti.cursomc.domain.Enums.TipoCliente;
 import com.jdnevesti.cursomc.repositories.CategoriaRepository;
 import com.jdnevesti.cursomc.repositories.CidadeRepository;
@@ -112,9 +113,14 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(estado3, estado4));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 
-		Cliente cliente1 = new Cliente(null, "Jonas Neves", "grandejonas@gmail.com", "36378912377",
+		Cliente cliente1 = new Cliente(null, "Ana Sofia", "anasofia@gmail.com", "36378912377",
 				TipoCliente.PESSOAFISICA, password.encode("123"));
-		cliente1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+		Cliente cliente2 = new Cliente(null, "Jonas Neves", "grandejonas@gmail.com", "13573437010",
+				TipoCliente.PESSOAFISICA, password.encode("456"));
+				cliente2.addPerfil(Perfil.ADMIN);
+		
+		cliente1.getTelefones().addAll(Arrays.asList("273633236", "993838393"));
+		cliente2.getTelefones().addAll(Arrays.asList("1556558356", "9793838393"));
 
 		Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "39220834", cliente1,
 				cidade1);
@@ -122,8 +128,9 @@ public class DBService {
 				cidade2);
 
 		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
+		cliente2.getEnderecos().addAll(Arrays.asList(endereco2));
 
-		clienteRepository.saveAll(Arrays.asList(cliente1));
+		clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
