@@ -8,7 +8,7 @@ import com.jdnevesti.cursomc.security.UserSS;
 @Service
 public class UserService {
 	// Quem é o usuário logado?
-	public static UserSS authentication() {
+	public static UserSS authenticated() {
 		try {
 			// Retorna o usuário logado no sistema
 			return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
