@@ -56,6 +56,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
         res.addHeader("Authorization", "Bearer " + token);
+        res.addHeader("access-control-expose-headers", "Authorization");
 	}
 	
 	// Classe para corrigir o código de retono (de 403 para 401) no Spring versão 2
