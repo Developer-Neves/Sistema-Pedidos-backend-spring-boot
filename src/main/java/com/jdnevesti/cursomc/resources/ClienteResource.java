@@ -71,6 +71,13 @@ public class ClienteResource {
 		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	// Método GET para consultar dados por email
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	public ResponseEntity<Cliente> find(@RequestParam(value="value") String email) {
+		Cliente obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
 
 	// Método GET para consulta todos os dados
 	@PreAuthorize("hasAnyRole('ADMIN')") // Autorizando endpoints para perfis específicos
