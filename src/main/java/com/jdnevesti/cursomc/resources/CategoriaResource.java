@@ -22,6 +22,10 @@ import com.jdnevesti.cursomc.domain.Categoria;
 import com.jdnevesti.cursomc.dto.CategoriaDTO;
 import com.jdnevesti.cursomc.services.CategoriaService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
@@ -30,6 +34,7 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	// Método GET para consultar dados por id
+	@ApiOperation(value="Busca por id")
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id){
 		Categoria obj = service.find(id);		
@@ -37,6 +42,7 @@ public class CategoriaResource {
 	}
 	
 	// Método GET para consulta todos os dados
+	@ApiOperation(value="Busca todas categorias")
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>> findAll(){
 		List<Categoria> list = service.findAll();
@@ -45,6 +51,7 @@ public class CategoriaResource {
 	}
 	
 	// Método POST para inserir dados
+	@ApiOperation(value="Insere categoria")
 	@PreAuthorize("hasAnyRole('ADMIN')") //Autorizando endpoints para perfis específicos
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto){
@@ -57,6 +64,7 @@ public class CategoriaResource {
 	}
 	
 	// Método PUT para atualizar dados
+	@ApiOperation(value="Atualiza categoria")
 	@PreAuthorize("hasAnyRole('ADMIN')") //Autorizando endpoints para perfis específicos
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id){
@@ -66,7 +74,11 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	// Método DELETE para atualizar dados
+	// Método DELETE para excluir categorias
+	@ApiOperation(value="Excluir categoria") // Descrições personalizadas para os endpoints	
+	@ApiResponses(value = { //Mensagens de resposta específicas
+			@ApiResponse(code = 400, message = "Não é possível excluir uma categoria que possui produtos"),
+			@ApiResponse(code = 404, message = "Código inexistente") })
 	@PreAuthorize("hasAnyRole('ADMIN')") //Autorizando endpoints para perfis específicos
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
@@ -75,6 +87,7 @@ public class CategoriaResource {
 	}
 	
 	// Método para paginar os dados
+	@ApiOperation(value="Retorna todas categorias com paginação")
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public ResponseEntity<Page<CategoriaDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page,
