@@ -185,22 +185,26 @@ public class DBService {
 				p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p34, p35, p36, p37, p38,
 				p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
 
-		Estado estado3 = new Estado(null, "Rio Grande do Norte");
-		Estado estado4 = new Estado(null, "Piauí");
+		Estado estado3 = new Estado(null, "Minas Gerais");
+		Estado estado4 = new Estado(null, "São Paulo");
+		Estado estado5 = new Estado(null, "Rio Grande do Norte");
 
 		Cidade cidade1 = new Cidade(null, "Uberlândia", estado3);
 		Cidade cidade2 = new Cidade(null, "São Paulo", estado4);
 		Cidade cidade3 = new Cidade(null, "Campinas", estado4);
+		Cidade cidade4 = new Cidade(null, "Jundiaí", estado4);
+		Cidade cidade5 = new Cidade(null, "Pedra Grande", estado5);
+		Cidade cidade6 = new Cidade(null, "Natal", estado5);
 
 		estado3.getCidades().addAll(Arrays.asList(cidade1));
-		estado3.getCidades().addAll(Arrays.asList(cidade2, cidade3));
+		estado4.getCidades().addAll(Arrays.asList(cidade2, cidade3, cidade4));
 
-		estadoRepository.saveAll(Arrays.asList(estado3, estado4));
-		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+		estadoRepository.saveAll(Arrays.asList(estado3, estado4, estado5));
+		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3, cidade4, cidade5, cidade6));
 
 		Cliente cliente1 = new Cliente(null, "Ana Sofia", "anasofia@gmail.com", "36378912377",
 				TipoCliente.PESSOAFISICA, password.encode("123"));
-		Cliente cliente2 = new Cliente(null, "Jonas Neves", "grandejonas@gmail.com", "13573437010",
+		Cliente cliente2 = new Cliente(null, "Taise Neves", "taiseneves@gmail.com", "13573437010",
 				TipoCliente.PESSOAFISICA, password.encode("456"));
 				cliente2.addPerfil(Perfil.ADMIN);
 		
@@ -211,12 +215,14 @@ public class DBService {
 				cidade1);
 		Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cliente1,
 				cidade2);
+		Endereco endereco3 = new Endereco(null, "Rua Presbítero", "15", "Casa", "Centro", "39970113", cliente2,
+				cidade2);
 
 		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
-		cliente2.getEnderecos().addAll(Arrays.asList(endereco2));
+		cliente2.getEnderecos().addAll(Arrays.asList(endereco3));
 
 		clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
-		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
+		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2, endereco3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
 

@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jdnevesti.cursomc</groupId>
-	<artifactId>cursomc</artifactId>
+	<artifactId>jdnevesTI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cursomc</name>
+	<name>jdneves</name>
 	<description>Estudo de caso Java para curso de Modelagem Conceitual com UML</description>
 
 	<properties>

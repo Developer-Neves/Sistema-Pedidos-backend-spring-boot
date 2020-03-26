@@ -60,7 +60,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	}
 	
 	// Classe para corrigir o código de retono (de 403 para 401) no Spring versão 2
-	@SuppressWarnings("unused")// ignorar o warnings - não obrigatório
+	@SuppressWarnings("unused")
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {		 
         @Override
         public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
