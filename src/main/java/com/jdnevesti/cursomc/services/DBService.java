@@ -184,19 +184,24 @@ public class DBService {
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
 				p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p34, p35, p36, p37, p38,
 				p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
-
-		Estado estado3 = new Estado(null, "Rio Grande do Norte");
-		Estado estado4 = new Estado(null, "Piauí");
+		
+		Estado estado2 = new Estado(null, "Rio Grande do Norte");
+		Estado estado3 = new Estado(null, "Minas Gerais");
+		Estado estado4 = new Estado(null, "São Paulo");
+		
 
 		Cidade cidade1 = new Cidade(null, "Uberlândia", estado3);
 		Cidade cidade2 = new Cidade(null, "São Paulo", estado4);
 		Cidade cidade3 = new Cidade(null, "Campinas", estado4);
+		Cidade cidade4 = new Cidade(null, "Natal", estado2);
+		Cidade cidade5 = new Cidade(null, "Pedra Grande", estado2);
 
+		estado2.getCidades().addAll(Arrays.asList(cidade4, cidade5));
 		estado3.getCidades().addAll(Arrays.asList(cidade1));
-		estado3.getCidades().addAll(Arrays.asList(cidade2, cidade3));
-
-		estadoRepository.saveAll(Arrays.asList(estado3, estado4));
-		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+		estado4.getCidades().addAll(Arrays.asList(cidade2, cidade3));
+		
+		estadoRepository.saveAll(Arrays.asList(estado2, estado3, estado4));
+		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3, cidade4, cidade5));
 
 		Cliente cliente1 = new Cliente(null, "Ana Sofia", "anasofia@gmail.com", "36378912377",
 				TipoCliente.PESSOAFISICA, password.encode("123"));
@@ -207,10 +212,8 @@ public class DBService {
 		cliente1.getTelefones().addAll(Arrays.asList("273633236", "993838393"));
 		cliente2.getTelefones().addAll(Arrays.asList("1556558356", "9793838393"));
 
-		Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "39220834", cliente1,
-				cidade1);
-		Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cliente1,
-				cidade2);
+		Endereco endereco1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "39220834", cliente1, cidade2);
+		Endereco endereco2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cliente2, cidade5);
 
 		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		cliente2.getEnderecos().addAll(Arrays.asList(endereco2));

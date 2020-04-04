@@ -28,7 +28,7 @@ public abstract class AbstractEmailService implements EmailService{
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-	@Override
+	@Override // confirmar pedido email TEXTO
 	public void sendOrderConfirmationEmail(Pedido obj) {
 		SimpleMailMessage sm = prepareSimpleMailMessageFromPedido(obj);
 		sendEmail(sm);
@@ -52,7 +52,8 @@ public abstract class AbstractEmailService implements EmailService{
 		return templateEngine.process("email/confirmacaoPedido", context);		
 	}
 	
-	@Override
+	
+	@Override // confirmar pedido email HTML
 	public void sendOrderConfirmationHtmlEmail(Pedido obj) {
 		try {
 			MimeMessage mm = prepareMimeMessageFromPedido(obj);
